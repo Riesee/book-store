@@ -1,0 +1,24 @@
+import { Injectable } from '@angular/core';
+import { BookModel } from './home-page/home-page.component';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class BookService {
+
+  constructor() { }
+
+  addCart(books: BookModel[]) {
+    const payload = JSON.stringify(books)
+    localStorage.setItem("cart", payload);
+  }
+
+  getCart() {
+    const response = localStorage.getItem("cart");
+    if (response) {
+      return JSON.parse(response);
+    } else return [];
+  }
+
+
+}
